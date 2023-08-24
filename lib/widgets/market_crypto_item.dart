@@ -1,5 +1,5 @@
+import 'package:cryptotrack/models/crypto_model.dart';
 import 'package:cryptotrack/utils/consts.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -23,16 +23,21 @@ class CryptoMarketHeader extends StatelessWidget {
             style: textstyle,
           ),
           const SizedBox(width: 16),
-          Expanded(child: Text("Coin", style: textstyle)),
+          Expanded(flex: 3, child: Text("Coin", style: textstyle)),
           const SizedBox(width: 16),
           Expanded(
+              flex: 3,
               child: Text(
-            "Price",
-            textAlign: TextAlign.end,
-            style: textstyle,
-          )),
+                "Price",
+                textAlign: TextAlign.end,
+                style: textstyle,
+              )),
           const SizedBox(width: 16),
-          const Text("1h"),
+          const Expanded(
+              child: Text(
+            "1h",
+            textAlign: TextAlign.end,
+          )),
         ],
       ),
     );
@@ -40,9 +45,9 @@ class CryptoMarketHeader extends StatelessWidget {
 }
 
 class CryptoMarketItem extends StatelessWidget {
-  const CryptoMarketItem({
-    super.key,
-  });
+  const CryptoMarketItem({super.key, this.currency});
+
+  final Cryptocurrency? currency;
 
   @override
   Widget build(BuildContext context) {
@@ -54,44 +59,56 @@ class CryptoMarketItem extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Row(
           children: [
-            const Text(
-              "1",
-              style: TextStyle(fontWeight: FontWeight.bold),
+            Text(
+              "${currency!.marketCapRank!}",
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             const SizedBox(width: 16),
             Expanded(
+                flex: 3,
                 child: Row(
-              children: [
-                Image.network(
-                  "https://assets.coingecko.com/coins/images/279/large/ethereum.png?1595348880",
-                  height: 24,
-                ),
-                const SizedBox(width: 4),
-                const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "BitCoin",
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                    Image.network(
+                      currency!.image!,
+                      height: 24,
                     ),
-                    Text(
-                      "BTC",
-                      style: TextStyle(
-                          fontWeight: FontWeight.normal, fontSize: 10),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            currency!.name!,
+                            maxLines: 1,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 14),
+                          ),
+                          Text(
+                            currency!.symbol!,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.normal, fontSize: 10),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
-                ),
-              ],
-            )),
+                )),
             const SizedBox(width: 16),
-            const Expanded(
+            Expanded(
+                flex: 2,
                 child: Text(
-              "\$1111",
-              textAlign: TextAlign.end,
-              style: TextStyle(fontWeight: FontWeight.bold),
-            )),
-            const SizedBox(width: 16),
-            const Text("-0.0"),
+                  "₹${currency!.currentPrice!}",
+                  textAlign: TextAlign.end,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                )),
+            const SizedBox(width: 8),
+            Expanded(
+              flex: 1,
+              child: Text(
+                "${currency!.athChangePercentage.toInt()!}%",
+                textAlign: TextAlign.end,
+              ),
+            ),
           ],
         ),
       ),
