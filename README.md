@@ -1,6 +1,6 @@
 # Cryptotrack
 
-A new Flutter project.
+Cryptotrack is a cryptocurrency tracking platform that enables users to monitor cryptocurrency.
 
 ## Getting Started
 
@@ -10,7 +10,10 @@ Project Structure
 Lib
 |
 |------API
-|------Bloc
+|------Bloc-|
+|           |--Event, States
+|           |--CryptoListBloc, CryptoDetailBloc
+|
 |------Models
 |------Repositories
 |------Pages
