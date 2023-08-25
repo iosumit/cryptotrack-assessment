@@ -72,6 +72,7 @@ class CryptoMarketItem extends StatelessWidget {
                     Image.network(
                       currency!.image!,
                       height: 24,
+                      width: 24,
                     ),
                     const SizedBox(width: 8),
                     Expanded(
