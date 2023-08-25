@@ -9,9 +9,22 @@ class SplashScreen extends StatelessWidget {
     Future.delayed(const Duration(milliseconds: 2200), () {
       GoRouter.of(context).pushReplacement('/home');
     });
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Text("CRYPTO"),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              'assets/icons/crypto128.png',
+              height: 70,
+            ),
+            const SizedBox(height: 16),
+            const Text(
+              "CRYPTOTRACK",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
       ),
     );
   }
