@@ -67,10 +67,10 @@ class CryptoDetailUi extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               Icon(
-                currency!.athChangePercentage < 0
+                currency!.priceChangePercentage24h < 0
                     ? Icons.arrow_drop_down
                     : Icons.arrow_drop_up,
-                color: currency!.athChangePercentage < 0
+                color: currency!.priceChangePercentage24h < 0
                     ? Palates.red
                     : Palates.green,
               ),
@@ -78,7 +78,7 @@ class CryptoDetailUi extends StatelessWidget {
                 "${currency!.priceChangePercentage24h!.toStringAsFixed(2)}%",
                 textAlign: TextAlign.end,
                 style: TextStyle(
-                    color: currency!.athChangePercentage < 0
+                    color: currency!.priceChangePercentage24h < 0
                         ? Palates.red
                         : Palates.green,
                     fontWeight: FontWeight.bold,

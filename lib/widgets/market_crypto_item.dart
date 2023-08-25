@@ -107,8 +107,13 @@ class CryptoMarketItem extends StatelessWidget {
             Expanded(
               flex: 1,
               child: Text(
-                "${currency!.athChangePercentage.toInt()!}%",
+                "${currency!.priceChangePercentage24h.toStringAsFixed(1)!}%",
                 textAlign: TextAlign.end,
+                style: TextStyle(
+                    color: currency!.priceChangePercentage24h < 0
+                        ? Palates.red
+                        : Palates.green,
+                    fontWeight: FontWeight.bold),
               ),
             ),
           ],
