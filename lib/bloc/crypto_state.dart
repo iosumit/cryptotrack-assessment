@@ -1,14 +1,7 @@
 import 'package:cryptotrack/models/crypto_model.dart';
 import 'package:equatable/equatable.dart';
 
-enum CryptoState { initial, success, failure }
-
-sealed class CryptoEvent extends Equatable {
-  @override
-  List<Object> get props => [];
-}
-
-class FetchCryptoCurrencies extends CryptoEvent {}
+import 'crypto_events.dart';
 
 final class CryptoListState extends Equatable {
   const CryptoListState({
@@ -37,4 +30,25 @@ final class CryptoListState extends Equatable {
 
   @override
   List<Object> get props => [status, currencies];
+}
+
+final class CryptoDetailState extends Equatable {
+  final CryptoState status;
+  final Cryptocurrency? cryptocurrency;
+  const CryptoDetailState(
+      {this.status = CryptoState.initial, this.cryptocurrency});
+
+  CryptoDetailState copyWith({
+    CryptoState? status,
+    Cryptocurrency? cryptocurrency,
+    bool? hasReachedMax,
+  }) {
+    return CryptoDetailState(
+      status: status ?? this.status,
+      cryptocurrency: cryptocurrency ?? this.cryptocurrency,
+    );
+  }
+
+  @override
+  List<Object?> get props => [status, cryptocurrency];
 }

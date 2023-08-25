@@ -1,4 +1,7 @@
-import 'package:cryptotrack/bloc/crypto_bloc.dart';
+import 'package:cryptotrack/bloc/crypto_detail_bloc.dart';
+import 'package:cryptotrack/bloc/crypto_list_bloc.dart';
+import 'package:cryptotrack/models/crypto_model.dart';
+import 'package:cryptotrack/pages/crypto_detail_screen.dart';
 import 'package:cryptotrack/pages/home_screen.dart';
 import 'package:cryptotrack/pages/splash_screen.dart';
 import 'package:cryptotrack/repositories/crypto_repository.dart';
@@ -23,7 +26,17 @@ class MyApp extends StatelessWidget {
           routes: [
             GoRoute(
                 path: 'home',
-                builder: (context, state) => const HomeScreen(key: Key('home')))
+                builder: (context, state) => const HomeScreen(
+                      key: Key('home'),
+                    ),
+                routes: [
+                  GoRoute(
+                      path: 'detail',
+                      builder: (context, state) => CryptocurrencyDetailScreen(
+                            key: const Key('detail'),
+                            currency: state.extra as Cryptocurrency,
+                          ))
+                ]),
           ]),
     ],
   );
@@ -34,6 +47,10 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<CryptoListBloc>(
           create: (BuildContext context) => CryptoListBloc(CryptoRepository()),
+        ),
+        BlocProvider<CryptoDetailBloc>(
+          create: (BuildContext context) =>
+              CryptoDetailBloc(CryptoRepository()),
         ),
       ],
       child: MaterialApp.router(

@@ -1,6 +1,4 @@
 class API {
-  static const String fetch_cryptocurrencies =
-      "https://api.coingecko.com/api/v3/coins/markets";
-  static const String fetch_cryptocurrency_detail =
-      "https://api.coingecko.com/api/v3/coins/markets";
+  static const String base = "https://api.coingecko.com/";
+  static const String fetch_cryptocurrencies = "${base}api/v3/coins/markets";
 }

@@ -1,7 +1,9 @@
-import 'package:cryptotrack/bloc/crypto_bloc.dart';
+import 'package:cryptotrack/bloc/crypto_list_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
+import '../bloc/crypto_events.dart';
 import '../bloc/crypto_state.dart';
 import '../widgets/market_crypto_item.dart';
 
@@ -52,6 +54,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemCount: state.currencies.length,
                     itemBuilder: (_, i) => CryptoMarketItem(
                       currency: state.currencies[i],
+                      onTap: () => GoRouter.of(context)
+                          .push('/home/detail', extra: state.currencies[i]),
                     ),
                   ),
                 );

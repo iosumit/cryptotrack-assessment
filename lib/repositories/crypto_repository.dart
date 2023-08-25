@@ -8,4 +8,9 @@ class CryptoRepository {
     final res = await _api.fetchCryptoCurrencies(param);
     return CryptocurrencyListResponse.fromJson(res).currencies;
   }
+
+  Future<Cryptocurrency> fetchCurrencyDetail([param]) async {
+    final res = await _api.fetchCryptoCurrencies(param);
+    return Cryptocurrency.fromJson(res);
+  }
 }

@@ -45,14 +45,15 @@ class CryptoMarketHeader extends StatelessWidget {
 }
 
 class CryptoMarketItem extends StatelessWidget {
-  const CryptoMarketItem({super.key, this.currency});
+  const CryptoMarketItem({super.key, this.currency, this.onTap});
 
   final Cryptocurrency? currency;
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
             border: Border(bottom: BorderSide(color: Palates.border))),
